@@ -1,0 +1,24 @@
+---
+
+- name: Deploy Slurm App
+  hosts: all
+  become: yes
+
+  pre_tasks:
+
+    - name: Update system
+      ansible.builtin.yum: 
+        name: "*"
+        state: latest
+        update_cache: yes
+
+    - name: Install dependencies
+      ansible.builtin.yum:
+        name: python-psycopg2
+        state: present
+    
+
+  roles:
+    - mypostgres
+
+
