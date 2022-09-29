@@ -1,2 +1,4 @@
 ---
 # vars file for mypostgres
+mypostgres_slurm_db_name: slurm
+mypostgres_slurm_user: slurm_db_user

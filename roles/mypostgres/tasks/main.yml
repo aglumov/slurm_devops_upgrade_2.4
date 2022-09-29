@@ -32,21 +32,21 @@
 - block:
   - name: Add database Slurm
     community.postgresql.postgresql_db:
-      name: slurm
+      name: "{{ mypostgres_slurm_db_name }}"
   
   - name: Create user for manage db Slurm
     community.postgresql.postgresql_user:
-      name: slurm_db_user
+      name: "{{ mypostgres_slurm_user }}"
       password: "slurm"
       role_attr_flags: "LOGIN"
 
   - name: Grant privileges to slurm_db_user on DB slurm
     community.postgresql.postgresql_privs:
       type: database
-      db: slurm
+      db: "{{ mypostgres_slurm_db_name }}"
       grant_option: yes
       privs: ALL
-      roles: slurm_db_user
+      roles: "{{ mypostgres_slurm_user }}"
 
   become: yes
   become_user: postgres
